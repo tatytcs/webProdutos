@@ -17,5 +17,10 @@ export const routes: Routes = [
     {
         path:'pages/edicao-produtos',//ROTA
         component:EdicaoProdutosComponent //COMPONENTE
+    },
+
+    {
+        path:'', pathMatch: 'full', //raiz do projeto
+        redirectTo: 'pages/consulta-produtos'//redirecionamento
     }
 ];
