@@ -6,35 +6,63 @@
             <h4 class="card-title">Cadastro de Produto</h4>
             <p class="card-subtitle">Preencha o formulário para incluir um produto.</p>
           </div>
-          <div class="card-body">
-            <form>
+          <div class="card-body"> 
+            
+            <div *ngIf="mensagem" class="alert alert-success">
+             <strong>Sucesso!</strong> {{mensagem}}
+            </div>
+
+            <!--formGroup é a variável que criamos no arquivo .ts-->
+            <!--ngSubmit é o evento que será disparado quando o formulário for submetido-->
+            <!--onSubmit é o método que será chamado quando o formulário for submetido-->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
               <div class="mb-3">
                 <label for="nome" class="form-label">Nome do Produto</label>
-                <input type="text" class="form-control" id="nome" placeholder="Digite o nome do produto" required>
-              </div>
+                <!--formControlName é o nome do campo que será utilizado para fazer a validação-->
+                <input type="text" formControlName="nome" class="form-control" id="nome" placeholder="Digite o nome do produto" required>
+                <!--ngIf é uma diretiva do angular que exibe um elemento se a condição for verdadeira-->
+                <div *ngIf="erros && erros.nome" class="text-danger">
+                  <strong>{{erros.nome}}</strong>     
+                </div>
               
+              </div>
               <div class="mb-3">
                 <label for="preco" class="form-label">Preço</label>
-                <input type="number" class="form-control" id="preco" placeholder="Digite o preço do produto" required>
+                <input type="number" formControlName="preco" class="form-control" id="preco" placeholder="Digite o preço do produto" required>
+                
+                <div *ngIf="erros && erros.preco" class="text-danger">
+                  <strong>{{erros.preco}}</strong>     
+                </div>
+              
               </div>
               
               <div class="mb-3">
                 <label for="quantidade" class="form-label">Quantidade</label>
-                <input type="number" class="form-control" id="quantidade" placeholder="Digite a quantidade do produto" required>
+                <input type="number" formControlName="quantidade" class="form-control" id="quantidade" placeholder="Digite a quantidade do produto" required>
+              
+                <div *ngIf="erros && erros.quantidade" class="text-danger">
+                  <strong>{{erros.quantidade}}</strong>     
+                </div>              
+              
               </div>
               
               <div class="mb-3">
                 <label for="categoria" class="form-label">Categoria</label>
-                <select class="form-select" id="categoria" required>
+                <select class="form-select" formControlName="categoriaId" id="categoria" required>
                   <option value="" disabled selected>Selecione a categoria</option>
                   <!--ngFor iterar sobre a lista.
                   Para cada elemento no array de categoria crie uma option
                  cada c representa uma categoria-->
-                  <option *ngFor="let c of categorias">
+                  <option *ngFor="let c of categorias" value="{{c.id}}">
                     {{c.nome}}
                   </option>
-
+                
                 </select>
+
+                <div *ngIf="erros && erros.categoriaId" class="text-danger">
+                  <strong>{{erros.categoriaId}}</strong>     
+                </div>
+
               </div>
               
               <div class="mb-3">
