@@ -1,3 +1,5 @@
+import { DashboardComponent } from "../components/pages/dashboard/dashboard.component";
+
 //variável para configurar o endereço da API
 const apiUrl = "http://localhost:8080";
 
@@ -7,5 +9,8 @@ export const endpoints = {
     atualizar_produto : `${apiUrl}/api/produtos/atualizar`,
     excluir_produto : `${apiUrl}/api/produtos/excluir`,
     consultar_produtos : `${apiUrl}/api/produtos/consultar`,
-    consultar_categorias : `${apiUrl}/api/categorias/consultar`
+    obter_produto : `${apiUrl}/api/produtos/obter`,
+    consultar_categorias : `${apiUrl}/api/categorias/consultar`,
+    dashboard_categorias : `${apiUrl}/api/dashboard/produtos-categoria`
+
 };
